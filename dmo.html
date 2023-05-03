@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="application/Javascript">
+        function load()
+        {
+            var url="dmo.html";
+            var requset=new XMLHttpRequest;
+            var table=document.getElementById("mytable");
+            requset.onreadystatechange=function()
+            {
+                if(requset.readyState==4)
+                {
+                    var jsonobj=JSON.parse(requset.responseText)
+                    for (i=0;i<(jsonobj.length);i++)
+                    {
+                        dt=jsonobj[i];
+
+                        var row=table.insertRow(i+1);
+                        var coll1=table.insertCell(0);
+                        var coll1=table.insertCell(1);
+                        var coll1=table.insertCell(2);
+                        var coll1=table.insertCell(3);
+
+
+                        cell1.innerHTML=jsonobj[i].rollno;
+                        cell1.innerHTML=jsonobj[i].name;
+                        cell1.innerHTML=jsonobj[i].result;
+                        cell1.innerHTML=jsonobj[i].div;
+                    }
+                }
+            };
+            requset.open("GET",url,true);
+            requset.send();
+        }
+    </script>
+</head>
+
+<body>
+    <table id="mytable" border="1" align="center">
+        <tr>
+            <td>Rollno</td>
+            <td>Name</td>
+            <td>Result</td>
+            <td>Div</td>
+        </tr>
+    </table>
+    <input type="button" value="click" onclick="load()">
+</body>
+
+</html>
